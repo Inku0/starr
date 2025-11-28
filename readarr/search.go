@@ -26,14 +26,14 @@ func (r *Readarr) Search(term string) ([]*SearchResult, error) {
 
 // SearchContext returns a slice of pointers to SearchResult.
 func (r *Readarr) SearchContext(ctx context.Context, term string) ([]*SearchResult, error) {
+	var output []*SearchResult
+
 	if term == "" {
-		return nil, fmt.Errorf("search term can't be empty")
+		return output, nil
 	}
 
 	params := make(url.Values)
 	params.Set("term", term)
-
-	var output []*SearchResult
 
 	req := starr.Request{URI: bpSearch, Query: params}
 	if err := r.GetInto(ctx, req, &output); err != nil {
