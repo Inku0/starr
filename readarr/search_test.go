@@ -350,8 +350,8 @@ func TestSearch(t *testing.T) {
 			mockServer := test.GetMockServer(t)
 			client := readarr.New(starr.New("mockAPIkey", mockServer.URL, 0))
 			output, err := client.Search(test.WithRequest.(string))
-			require.ErrorIs(t, err, test.WithError, "wrong error")
-			assert.EqualValues(t, test.WithResponse, output, "response mismatch")
+			require.ErrorIs(t, err, test.WithError, "the wrong error was returned")
+			assert.EqualValues(t, test.WithResponse, output, "make sure ResponseBody and WithResponse are a match")
 		})
 	}
 }
